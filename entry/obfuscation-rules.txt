@@ -1,0 +1,13 @@
+# 宠忆时光 HarmonyOS - 代码混淆规则
+# entry/obfuscation-rules.txt
+#
+# 如需开启混淆，在 entry/build-profile.json5 中设置 enable: true
+
+-enable-property-obfuscation
+-enable-toplevel-obfuscation
+-enable-filename-obfuscation
+-enable-export-obfuscation
+
+# 保留 Kit API 导出的名称不混淆
+-keep-global-name
+http
