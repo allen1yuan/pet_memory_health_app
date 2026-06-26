@@ -1,0 +1,58 @@
+{
+  "color": [
+    { "name": "start_window_background", "value": "#FFFFFF" },
+
+    { "name": "brand_primary", "value": "#F2843D" },
+    { "name": "brand_primary_light", "value": "#FFA866" },
+    { "name": "brand_primary_deep", "value": "#D9651F" },
+    { "name": "brand_primary_grad_end", "value": "#FF9A4D" },
+    { "name": "brand_primary_pressed", "value": "#C2570F" },
+    { "name": "brand_primary_dim", "value": "#FDE9D4" },
+    { "name": "brand_accent", "value": "#F2843D" },
+    { "name": "brand_accent_dim", "value": "#FDE9D4" },
+    { "name": "brand_highlight", "value": "#FFF1DE" },
+
+    { "name": "cta_amber", "value": "#F2843D" },
+    { "name": "cta_amber_pressed", "value": "#C2570F" },
+    { "name": "cta_amber_dim", "value": "#FDE9D4" },
+
+    { "name": "bg_base", "value": "#FFFFFF" },
+    { "name": "bg_deep", "value": "#FCFAF8" },
+    { "name": "bg_card", "value": "#FFFFFF" },
+    { "name": "bg_card_elevated", "value": "#FAF7F3" },
+    { "name": "bg_huawei_btn", "value": "#F5F2EE" },
+    { "name": "bg_input", "value": "#F7F4F0" },
+    { "name": "bg_input_focused", "value": "#FDEEDE" },
+    { "name": "bg_glass", "value": "#FFFFFFB3" },
+    { "name": "bg_overlay", "value": "#4D1A140D" },
+
+    { "name": "text_primary", "value": "#2B1F17" },
+    { "name": "text_body", "value": "#4A3B30" },
+    { "name": "text_secondary", "value": "#7C6E62" },
+    { "name": "text_tertiary", "value": "#A89A8C" },
+    { "name": "text_disabled", "value": "#D2C7BB" },
+    { "name": "text_on_primary", "value": "#FFFFFF" },
+    { "name": "text_on_amber", "value": "#FFFFFF" },
+
+    { "name": "divider", "value": "#EFEAE3" },
+    { "name": "border_default", "value": "#EFEAE3" },
+    { "name": "border_subtle", "value": "#F4F0EA" },
+    { "name": "border_active", "value": "#F2843D" },
+
+    { "name": "glow_primary_sm", "value": "#F2843D33" },
+    { "name": "glow_primary_md", "value": "#F2843D1F" },
+    { "name": "glow_primary_lg", "value": "#F2843D14" },
+    { "name": "glow_accent_sm", "value": "#F2843D26" },
+    { "name": "glow_ambient", "value": "#F2843D14" },
+    { "name": "glow_ambient_bottom", "value": "#F2843D0F" },
+
+    { "name": "state_error", "value": "#E5483B" },
+    { "name": "state_success", "value": "#4FA968" },
+    { "name": "state_warning", "value": "#F2843D" },
+    { "name": "state_info", "value": "#8C8275" },
+
+    { "name": "pet_dog", "value": "#F2843D" },
+    { "name": "pet_cat", "value": "#D9651F" },
+    { "name": "type_trip", "value": "#C2570F" }
+  ]
+}

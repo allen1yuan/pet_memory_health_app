@@ -1,0 +1,13 @@
+{
+  "modelVersion": "6.1.0",
+  "name": "chongyi-shiguang",
+  "version": "1.0.0",
+  "description": "宠忆时光 - 全链路宠物成长记录平台 (MVP)",
+  "main": "",
+  "author": "ChongYi Team",
+  "license": "Apache-2.0",
+  "dependencies": {},
+  "devDependencies": {
+    "@ohos/hypium": "1.0.19"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "string": [
+    { "name": "app_name", "value": "宠忆时光" },
+    { "name": "module_desc", "value": "全链路宠物成长记录平台" },
+    { "name": "EntryAbility_desc", "value": "宠忆时光主入口" },
+    { "name": "EntryAbility_label", "value": "宠忆时光" },
+    { "name": "internet_reason", "value": "用于华为账号登录与后续在线服务" }
+  ]
+}

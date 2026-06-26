@@ -1,0 +1,11 @@
+{
+  "src": [
+    "pages/LoginPage",
+    "pages/PetSetupPage",
+    "pages/MainPage",
+    "pages/TimelinePage",
+    "pages/HospitalPage",
+    "pages/HospitalDetailPage",
+    "pages/PlansPage"
+  ]
+}

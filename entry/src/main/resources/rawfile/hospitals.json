@@ -1,0 +1,59 @@
+[
+  {
+    "id": "h1",
+    "name": "爱宠动物医院",
+    "star": 3,
+    "address": "朝阳区建国路 88 号",
+    "distanceText": "1.2km",
+    "services": ["全科诊疗", "急诊24h", "外科手术", "影像检查", "住院护理", "疫苗驱虫"],
+    "certLevel": "三星 · 行业标杆 (Top 1%)",
+    "certValidUntil": "2027年5月",
+    "certMethod": "第三方中立 · 无商业赞助",
+    "reviews": [
+      { "author": "小林", "rating": 5, "content": "医生很专业，给狗狗做了详细检查，环境干净，价格透明。" },
+      { "author": "Aria", "rating": 5, "content": "急诊响应很快，半夜送来也有人接诊，非常安心。" }
+    ]
+  },
+  {
+    "id": "h2",
+    "name": "乐宠宠物诊所",
+    "star": 2,
+    "address": "海淀区中关村大街 12 号",
+    "distanceText": "2.8km",
+    "services": ["全科诊疗", "疫苗驱虫", "洗护"],
+    "certLevel": "二星 · 优质服务",
+    "certValidUntil": "2027年3月",
+    "certMethod": "第三方中立 · 无商业赞助",
+    "reviews": [
+      { "author": "豆豆妈", "rating": 4, "content": "离家近，日常疫苗驱虫很方便，态度也不错。" }
+    ]
+  },
+  {
+    "id": "h3",
+    "name": "安心宠物医疗中心",
+    "star": 3,
+    "address": "西城区西直门外大街 5 号",
+    "distanceText": "3.5km",
+    "services": ["全科诊疗", "急诊24h", "肿瘤科", "口腔科", "影像检查"],
+    "certLevel": "三星 · 行业标杆 (Top 1%)",
+    "certValidUntil": "2027年8月",
+    "certMethod": "第三方中立 · 无商业赞助",
+    "reviews": [
+      { "author": "Mr.W", "rating": 5, "content": "专科很全，做了牙科手术，恢复得很好。" }
+    ]
+  },
+  {
+    "id": "h4",
+    "name": "萌爪社区宠物店医院",
+    "star": 1,
+    "address": "丰台区南三环西路 30 号",
+    "distanceText": "4.1km",
+    "services": ["疫苗驱虫", "洗护", "寄养"],
+    "certLevel": "一星 · 基础合规",
+    "certValidUntil": "2026年12月",
+    "certMethod": "第三方中立 · 无商业赞助",
+    "reviews": [
+      { "author": "圆圆", "rating": 4, "content": "社区小店，日常护理足够，性价比高。" }
+    ]
+  }
+]
