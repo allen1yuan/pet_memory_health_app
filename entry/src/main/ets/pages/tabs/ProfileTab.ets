@@ -226,7 +226,10 @@ export struct ProfileTab {
             Text(this.userName).fontSize(Theme.font.subtitle).fontColor(Theme.color.textPrimary).fontWeight(FontWeight.Medium)
             Text(this.phone + ' · 陪伴第 ' + this.companionDays() + ' 天').fontSize(Theme.font.footnote).fontColor(Theme.color.textTertiary)
           }.alignItems(HorizontalAlign.Start).layoutWeight(1)
-          Text(Icons.edit).fontSize(18).fontColor(Theme.color.textTertiary).onClick(() => this.openEditProfile())
+          Text(Icons.edit).fontSize(16).fontColor(Theme.color.textTertiary)
+            .width(34).height(34).textAlign(TextAlign.Center).borderRadius(17)
+            .backgroundColor(Theme.color.bgCardElevated)
+            .onClick(() => this.openEditProfile())
         }
         .width('100%').padding(15).backgroundColor(Theme.color.bgCard)
         .borderRadius(Theme.radius.md).border({ width: 1, color: Theme.color.borderDefault })

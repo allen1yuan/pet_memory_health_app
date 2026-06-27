@@ -41,11 +41,15 @@ struct PetSetupPage {
   @State saving: boolean = false
   @State editId: number = 0
   @State canGoBack: boolean = false
+  @State private avatarPulse: number = 0
   private ctx: common.UIAbilityContext | null = null
 
   async aboutToAppear(): Promise<void> {
     this.ctx = this.getUIContext().getHostContext()! as common.UIAbilityContext
     await AppInit.ensure(this.ctx)
+    animateTo({ duration: 2600, curve: Curve.EaseInOut, iterations: -1, playMode: PlayMode.Alternate }, () => {
+      this.avatarPulse = 1
+    })
     // 路由栈深度 > 1 说明是从其他页面 push 进来的（如「我的」加宠物），应显示返回；
     // 首次 onboarding 用 replaceUrl 进入，栈深度恒为 1，不显示返回
     this.canGoBack = Number(this.getUIContext().getRouter().getLength()) > 1
@@ -174,13 +178,15 @@ struct PetSetupPage {
             .fontSize(Theme.font.footnote).fontColor(Theme.color.textTertiary)
             .width('100%')
 
-          // 头像
-          Stack() {
-            Column()
-              .width(140).height(140).borderRadius(70)
-              .backgroundColor(Theme.color.glowPrimarySm)
-              .blur(36)
-            Column({ space: 4 }) {
+          // 头像（柔光呼吸光环 + 头像本体）
+          Column({ space: 4 }) {
+            Stack() {
+              Column()
+                .width(116).height(116).borderRadius(58)
+                .radialGradient({ center: ['50%', '50%'], radius: '50%', colors: [['#38FFD9A6', 0], ['#00FFD9A6', 1]] })
+                .scale({ x: 1 + this.avatarPulse * 0.1, y: 1 + this.avatarPulse * 0.1 })
+                .opacity(0.65 + this.avatarPulse * 0.35)
+                .hitTestBehavior(HitTestMode.None)
               Stack() {
                 if (this.avatarUri.length > 0) {
                   Image(this.avatarUri).width(88).height(88).borderRadius(44).objectFit(ImageFit.Cover)
@@ -198,8 +204,9 @@ struct PetSetupPage {
               .alignContent(Alignment.Center)
               .onClick(() => this.pickAvatar())
             }
+            .width(116).height(116).alignContent(Alignment.Center)
           }
-          .width('100%').alignContent(Alignment.Center)
+          .width('100%')
 
           Column() {
             this.fieldLabel('宠物昵称')

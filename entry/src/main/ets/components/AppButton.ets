@@ -94,6 +94,7 @@ export struct AppButton {
           .blur(32)
           .opacity(this.pressed ? 0.55 : 0.85)
           .animation({ duration: Theme.motion.fast, curve: Curve.EaseOut })
+          .hitTestBehavior(HitTestMode.None)
       }
 
       // 主体按钮

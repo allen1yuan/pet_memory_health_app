@@ -30,12 +30,27 @@ struct LoginPage {
   @State codeError: string = ''
   @State countdown: number = 0
   @State loading: boolean = false
+  @State private glowPulseA: number = 0
+  @State private glowPulseB: number = 0
   private timerId: number = -1
   private ctx: common.UIAbilityContext | null = null
 
   async aboutToAppear(): Promise<void> {
     this.ctx = this.getUIContext().getHostContext()! as common.UIAbilityContext
     await AppInit.ensure(this.ctx)
+    this.startAmbientGlow()
+  }
+
+  // 两个柔光圈缓慢呼吸，错开周期避免同步显得呆板
+  private startAmbientGlow(): void {
+    animateTo({ duration: 3600, curve: Curve.EaseInOut, iterations: -1, playMode: PlayMode.Alternate }, () => {
+      this.glowPulseA = 1
+    })
+    setTimeout(() => {
+      animateTo({ duration: 4200, curve: Curve.EaseInOut, iterations: -1, playMode: PlayMode.Alternate }, () => {
+        this.glowPulseB = 1
+      })
+    }, 600)
   }
 
   // 兜底：防止用户在首次冷启动、数据库尚未建表完成时就点了登录/演示按钮
@@ -128,17 +143,22 @@ struct LoginPage {
         .width('100%').height('100%')
         .backgroundColor(Theme.color.bgBase)
 
-      // 环境光晕
+      // 两圈柔光呼吸动效：极浅暖色径向渐变，远比纯色+blur 干净，不会糊成色斑
+      // hitTestBehavior(None) 必须加：纯装饰层，否则会按默认规则挡住下面表单的点击
       Column()
-        .width(280).height(280).borderRadius(140)
-        .backgroundColor(Theme.color.glowPrimaryMd)
-        .blur(60)
-        .position({ x: -60, y: -80 })
+        .width(260).height(260).borderRadius(130)
+        .radialGradient({ center: ['50%', '50%'], radius: '50%', colors: [['#30FFD9A6', 0], ['#00FFD9A6', 1]] })
+        .scale({ x: 1 + this.glowPulseA * 0.12, y: 1 + this.glowPulseA * 0.12 })
+        .opacity(0.6 + this.glowPulseA * 0.4)
+        .position({ x: -70, y: -90 })
+        .hitTestBehavior(HitTestMode.None)
       Column()
         .width(220).height(220).borderRadius(110)
-        .backgroundColor(Theme.color.glowAccentSm)
-        .blur(60)
-        .position({ x: '70%', y: '70%' })
+        .radialGradient({ center: ['50%', '50%'], radius: '50%', colors: [['#26FFC98F', 0], ['#00FFC98F', 1]] })
+        .scale({ x: 1 + this.glowPulseB * 0.14, y: 1 + this.glowPulseB * 0.14 })
+        .opacity(0.55 + this.glowPulseB * 0.45)
+        .position({ x: '68%', y: '72%' })
+        .hitTestBehavior(HitTestMode.None)
 
       Column({ space: 14 }) {
         BrandLogo({ logoSize: 56, withGlow: true })

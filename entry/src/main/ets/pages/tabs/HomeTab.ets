@@ -203,6 +203,7 @@ export struct HomeTab {
         .backgroundColor('#33FFFFFF')
         .blur(40)
         .position({ x: '70%', y: -40 })
+        .hitTestBehavior(HitTestMode.None)
       Column({ space: 5 }) {
         Text('今日瞬间').fontSize(Theme.font.footnote).fontColor(Theme.color.textOnPrimary)
           .padding({ left: 9, right: 9, top: 3, bottom: 3 })
