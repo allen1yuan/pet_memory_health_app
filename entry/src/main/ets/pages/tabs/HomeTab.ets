@@ -219,6 +219,26 @@ export struct HomeTab {
     .onClick(() => this.gotoTimeline(false))
   }
 
+  @Builder statsStrip() {
+    Row({ space: 8 }) {
+      this.statChip(this.recent.length.toString(), '里程碑')
+      this.statChip(this.reminders.length.toString(), '健康计划')
+      this.statChip(this.companionDays().toString() + 'd', '陪伴天数')
+    }.width('100%')
+  }
+
+  @Builder statChip(value: string, label: string) {
+    Column({ space: 2 }) {
+      Text(value).fontSize(Theme.font.subtitle).fontColor(Theme.color.primary).fontWeight(FontWeight.Medium)
+      Text(label).fontSize(Theme.font.micro).fontColor(Theme.color.textTertiary)
+    }
+    .layoutWeight(1).padding({ top: 10, bottom: 10 })
+    .backgroundColor(Theme.color.bgCard)
+    .borderRadius(Theme.radius.md)
+    .border({ width: 1, color: Theme.color.borderSubtle })
+    .shadow(Theme.shadow.card)
+  }
+
   @Builder quickActions() {
     Row({ space: 9 }) {
       QuickActionTile({ glyph: Icons.camera, label: '记录瞬间', glyphColor: Theme.color.primary,
@@ -285,6 +305,7 @@ export struct HomeTab {
         this.topBar()
         this.petSelector()
         this.heroCard()
+        this.statsStrip()
         this.quickActions()
         this.reminderStrip()
         this.recentMilestone()

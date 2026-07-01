@@ -39,7 +39,8 @@
     "certValidUntil": "2027年8月",
     "certMethod": "第三方中立 · 无商业赞助",
     "reviews": [
-      { "author": "Mr.W", "rating": 5, "content": "专科很全，做了牙科手术，恢复得很好。" }
+      { "author": "Mr.W", "rating": 5, "content": "专科很全，做了牙科手术，恢复得很好。" },
+      { "author": "娜娜", "rating": 5, "content": "肿瘤科水平很高，术后随访也很到位，推荐！" }
     ]
   },
   {
@@ -54,6 +55,36 @@
     "certMethod": "第三方中立 · 无商业赞助",
     "reviews": [
       { "author": "圆圆", "rating": 4, "content": "社区小店，日常护理足够，性价比高。" }
+    ]
+  },
+  {
+    "id": "h5",
+    "name": "宠惠国际动物医院",
+    "star": 3,
+    "address": "顺义区后沙峪镇 108 号",
+    "distanceText": "5.6km",
+    "services": ["全科诊疗", "急诊24h", "骨科", "神经外科", "影像CT", "康复理疗", "ICU"],
+    "certLevel": "三星 · 行业标杆 (Top 1%)",
+    "certValidUntil": "2028年1月",
+    "certMethod": "第三方中立 · 无商业赞助",
+    "reviews": [
+      { "author": "Ryan", "rating": 5, "content": "骨科手术一流，术后康复方案很完整，让主人放心。" },
+      { "author": "小雨", "rating": 5, "content": "ICU 设施完善，重症监护期间每天都有详细报告。" }
+    ]
+  },
+  {
+    "id": "h6",
+    "name": "蓝天宠物康复中心",
+    "star": 2,
+    "address": "通州区梨园镇运河东大街 66 号",
+    "distanceText": "7.2km",
+    "services": ["康复理疗", "水疗", "针灸", "全科诊疗", "疫苗驱虫"],
+    "certLevel": "二星 · 优质服务",
+    "certValidUntil": "2027年6月",
+    "certMethod": "第三方中立 · 无商业赞助",
+    "reviews": [
+      { "author": "欢欢妈", "rating": 5, "content": "水疗+针灸配合，老年犬关节炎改善明显，强烈推荐！" },
+      { "author": "Leo", "rating": 4, "content": "理疗师很专业，环境也很宽松，狗狗不紧张。" }
     ]
   }
 ]

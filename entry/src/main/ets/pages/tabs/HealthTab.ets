@@ -263,30 +263,57 @@ export struct HealthTab {
 
   @Builder profileCard() {
     Column({ space: 12 }) {
-      Row() {
+      // 头部：渐变 banner
+      Stack({ alignContent: Alignment.BottomStart }) {
+        Column().width('100%').height('100%')
+          .linearGradient({ angle: 135, colors: [['#FFF1DE', 0], ['#FFFFFF', 1]] })
+        Column()
+          .width(90).height(90).borderRadius(45)
+          .backgroundColor(Theme.color.glowPrimarySm)
+          .blur(28)
+          .position({ x: '72%', y: -20 })
+          .hitTestBehavior(HitTestMode.None)
         Column({ space: 3 }) {
           Text(this.pet.name.length > 0 ? this.pet.name + ' 的健康档案' : '健康档案')
             .fontSize(Theme.font.subtitle).fontColor(Theme.color.textPrimary).fontWeight(FontWeight.Medium)
-          Text('本地生成 · 可随记录自动更新')
-            .fontSize(Theme.font.footnote).fontColor(Theme.color.textTertiary)
-        }.alignItems(HorizontalAlign.Start).layoutWeight(1)
-        Text(Icons.shieldCheck).fontSize(24).fontColor(Theme.color.success)
-      }.width('100%')
+          Row({ space: 5 }) {
+            Text(Icons.shieldCheck).fontSize(12).fontColor(Theme.color.success)
+            Text('本地生成 · 可随记录自动更新')
+              .fontSize(Theme.font.footnote).fontColor(Theme.color.textTertiary)
+          }
+        }.alignItems(HorizontalAlign.Start).padding(14)
+      }
+      .width('100%').height(80)
+      .borderRadius({ topLeft: Theme.radius.md, topRight: Theme.radius.md })
+      .clip(true)
 
+      // 指标网格
       Row({ space: 8 }) {
         this.metricCard('当前体重', this.currentWeight() > 0 ? this.currentWeight().toFixed(1) + 'kg' : '--')
-        this.metricCard('未完成提醒', this.pendingCount().toString())
-        this.metricCard('健康记录', this.records.length.toString())
-      }.width('100%')
+        this.metricCard('待处理提醒', this.pendingCount().toString())
+        this.metricCard('体重记录', this.weights.length.toString())
+      }.width('100%').padding({ left: 14, right: 14 })
 
-      this.infoRow('宠物类型', this.pet.species === 'cat' ? '猫' : this.pet.species === 'dog' ? '犬' : '其他')
-      this.infoRow('品种', this.pet.breed.length > 0 ? this.pet.breed : '未填写')
-      this.infoRow('生日', this.pet.birthday > 0 ? DateUtil.ymd(this.pet.birthday) : '未填写')
-      this.infoRow('建议', this.pendingCount() > 0 ? '优先处理临近/逾期提醒' : '状态稳定，保持定期记录')
+      // 基本信息
+      Column({ space: 0 }) {
+        this.infoRow('宠物类型', this.pet.species === 'cat' ? '猫' : this.pet.species === 'dog' ? '犬' : '其他')
+        Divider().color(Theme.color.borderSubtle)
+        this.infoRow('品种', this.pet.breed.length > 0 ? this.pet.breed : '未填写')
+        Divider().color(Theme.color.borderSubtle)
+        this.infoRow('生日', this.pet.birthday > 0 ? DateUtil.ymd(this.pet.birthday) : '未填写')
+        Divider().color(Theme.color.borderSubtle)
+        this.infoRow('就诊/疫苗记录', this.records.length + ' 条')
+        Divider().color(Theme.color.borderSubtle)
+        this.infoRow('健康建议', this.pendingCount() > 0 ? '优先处理临近 / 逾期提醒' : '状态稳定，保持定期记录')
+      }
+      .width('100%').padding({ left: 14, right: 14, bottom: 14 })
+      .backgroundColor(Theme.color.bgCard)
     }
-    .width('100%').padding(14).backgroundColor(Theme.color.bgCard)
+    .width('100%')
+    .backgroundColor(Theme.color.bgCard)
     .borderRadius(Theme.radius.md).border({ width: 1, color: Theme.color.borderDefault })
     .shadow(Theme.shadow.card)
+    .clip(true)
   }
 
   @Builder metricCard(label: string, value: string) {

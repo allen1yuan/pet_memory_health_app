@@ -18,16 +18,29 @@ export class SeedData {
       return PrefStoreFallback.currentPetIdOrFirst()
     }
 
-    const demo = new Pet()
-    demo.name = '奶糖'
-    demo.species = 'dog'
-    demo.breed = '柯基'
-    demo.gender = 'female'
-    demo.birthday = DateUtil.addMonths(Date.now(), -26)
-    demo.weightKg = 12.3
-    const petId: number = await PetStore.insertPet(demo)
-    await SeedData.seedForPet(petId, demo.name, demo.birthday)
-    return petId
+    // 第一只宠物：柯基犬「奶糖」
+    const dog = new Pet()
+    dog.name = '奶糖'
+    dog.species = 'dog'
+    dog.breed = '柯基'
+    dog.gender = 'female'
+    dog.birthday = DateUtil.addMonths(Date.now(), -26)
+    dog.weightKg = 12.3
+    const dogId: number = await PetStore.insertPet(dog)
+    await SeedData.seedForPet(dogId, dog.name, dog.birthday)
+
+    // 第二只宠物：英短猫「可可」（简单数据，让宠物选择器更丰富）
+    const cat = new Pet()
+    cat.name = '可可'
+    cat.species = 'cat'
+    cat.breed = '英国短毛猫'
+    cat.gender = 'male'
+    cat.birthday = DateUtil.addMonths(Date.now(), -14)
+    cat.weightKg = 4.8
+    const catId: number = await PetStore.insertPet(cat)
+    await SeedData.seedCat(catId, cat.name, cat.birthday)
+
+    return dogId
   }
 
   static async seedForPet(petId: number, petName: string, birthday: number): Promise<void> {
@@ -99,14 +112,60 @@ export class SeedData {
     await SeedData.seedAlbum(petId)
   }
 
+  private static async seedCat(petId: number, name: string, birthday: number): Promise<void> {
+    const now: number = Date.now()
+    const day: number = AppConstants.DAY_MS
+
+    const m1 = new Milestone()
+    m1.petId = petId; m1.type = 'birthday'; m1.title = name + ' 的生日'
+    m1.date = birthday; m1.note = '家里庆生'
+    await PetStore.insertMilestone(m1)
+
+    const m2 = new Milestone()
+    m2.petId = petId; m2.type = 'vaccine'; m2.title = '猫三联接种'
+    m2.date = now - 18 * day; m2.note = '乐宠宠物诊所'
+    await PetStore.insertMilestone(m2)
+
+    const m3 = new Milestone()
+    m3.petId = petId; m3.type = 'checkup'; m3.title = '首次体检'
+    m3.date = DateUtil.addMonths(now, -12); m3.note = '安心宠物医疗中心'
+    await PetStore.insertMilestone(m3)
+
+    const h1 = new HealthReminder()
+    h1.petId = petId; h1.type = 'vaccine'; h1.title = '猫三联加强'
+    h1.dueDate = now + 15 * day; h1.cycleMonths = 12; h1.done = false; h1.notify = true
+    await PetStore.insertHealth(h1)
+
+    const h2 = new HealthReminder()
+    h2.petId = petId; h2.type = 'deworm'; h2.title = '体内驱虫'
+    h2.dueDate = now - 5 * day; h2.cycleMonths = 3; h2.done = false; h2.notify = true
+    await PetStore.insertHealth(h2)
+
+    const weights: number[] = [3.8, 4.1, 4.4, 4.6, 4.8]
+    for (let i = 0; i < weights.length; i++) {
+      const w = new WeightEntry()
+      w.petId = petId; w.weightKg = weights[i]
+      w.recordedAt = DateUtil.addMonths(now, -(weights.length - 1 - i))
+      await PetStore.insertWeight(w)
+    }
+
+    const cats: string[] = ['daily', 'food', 'daily', 'outdoor', 'other', 'daily']
+    for (let i = 0; i < cats.length; i++) {
+      const p = new PhotoItem()
+      p.petId = petId; p.uri = 'demo://' + cats[i]; p.category = cats[i]
+      p.takenAt = now - i * AppConstants.DAY_MS
+      await PetStore.insertPhoto(p)
+    }
+  }
+
   private static async seedAlbum(petId: number): Promise<void> {
     const now: number = Date.now()
-    // 覆盖全部 5 个相册分类，凑满 3x3 九宫格演示效果
+    // 覆盖全部 5 个相册分类，凑满 3x3 九宫格；uri 以 demo:// 开头让 PhotoTile 渲染分类色占位图
     const cats: string[] = ['daily', 'outdoor', 'hospital', 'food', 'daily', 'other', 'outdoor', 'daily', 'food']
     for (let i = 0; i < cats.length; i++) {
       const p = new PhotoItem()
       p.petId = petId
-      p.uri = ''
+      p.uri = 'demo://' + cats[i]
       p.category = cats[i]
       p.takenAt = now - i * AppConstants.DAY_MS
       await PetStore.insertPhoto(p)

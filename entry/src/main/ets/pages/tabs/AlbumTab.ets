@@ -232,15 +232,23 @@ export struct AlbumTab {
           .onClick(() => { this.showShare = true })
       }.width('100%').height(40).alignItems(VerticalAlign.Center)
 
-      Row({ space: 7 }) {
-        Text(Icons.photoPlus).fontSize(18).fontColor(Theme.color.textOnPrimary)
-        Text('从手机相册添加照片').fontSize(Theme.font.caption).fontColor(Theme.color.textOnPrimary).fontWeight(FontWeight.Medium)
-      }
-      .width('100%').height(48).justifyContent(FlexAlign.Center)
-      .linearGradient({ angle: 135, colors: [[Theme.color.primaryLight, 0], [Theme.color.primary, 1]] })
-      .borderRadius(Theme.radius.md)
-      .shadow(Theme.shadow.buttonAmber)
-      .onClick(() => { this.showAdd = true })
+      // 添加按钮 + 相册统计数
+      Row() {
+        Row({ space: 7 }) {
+          Text(Icons.photoPlus).fontSize(16).fontColor(Theme.color.textOnPrimary)
+          Text('添加照片').fontSize(Theme.font.caption).fontColor(Theme.color.textOnPrimary).fontWeight(FontWeight.Medium)
+        }
+        .padding({ left: 18, right: 18, top: 10, bottom: 10 })
+        .linearGradient({ angle: 135, colors: [[Theme.color.primaryLight, 0], [Theme.color.primary, 1]] })
+        .borderRadius(Theme.radius.pill)
+        .shadow(Theme.shadow.buttonAmber)
+        .onClick(() => { this.showAdd = true })
+        Blank()
+        Column({ space: 1 }) {
+          Text(this.photos.length.toString()).fontSize(Theme.font.h3).fontColor(Theme.color.primary).fontWeight(FontWeight.Medium)
+          Text('张照片').fontSize(Theme.font.micro).fontColor(Theme.color.textTertiary)
+        }
+      }.width('100%')
 
       this.filterRow()
 
